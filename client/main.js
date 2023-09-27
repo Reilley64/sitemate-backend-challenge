@@ -67,7 +67,12 @@ program.command("delete")
         mode: "cors",
         method: "DELETE"
     });
-    const json = yield response.json();
-    console.log(json);
+    if (response.ok) {
+        console.log(`Issue ${id} deleted`);
+    }
+    else {
+        const json = yield response.json();
+        console.log(json);
+    }
 }));
 program.parse();

@@ -68,9 +68,13 @@ program.command("delete")
       method: "DELETE"
     });
 
-    const json = await response.json();
+    if (response.ok) {
+      console.log(`Issue ${id} deleted`);
+    } else {
+      const json = await response.json();
 
-    console.log(json);
+      console.log(json);
+    }
   });
 
 program.parse();
