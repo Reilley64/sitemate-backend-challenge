@@ -16,4 +16,13 @@ public class Issue extends PersistentObject {
 
     @NotNull
     private String description;
+
+    @Override
+    public String toString() {
+        return "Issue{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

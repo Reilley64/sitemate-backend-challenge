@@ -14,7 +14,7 @@ public class IssueRestController {
     private final IssueService service;
 
     @PostMapping
-    public Issue create(CreateIssueRequest request) {
+    public Issue create(@RequestBody CreateIssueRequest request) {
         return service.create(request);
     }
 
@@ -24,7 +24,7 @@ public class IssueRestController {
     }
 
     @PutMapping("{id}")
-    public Issue update(@PathVariable Long id, UpdateIssueRequest request) {
+    public Issue update(@PathVariable Long id, @RequestBody UpdateIssueRequest request) {
         return service.update(this.read(id), request);
     }
 
