@@ -59,7 +59,7 @@ program.command("update")
     console.log(json);
   });
 
-program.delete("delete")
+program.command("delete")
   .description("delete an issue")
   .argument("<id>", "issue id")
   .action(async (id: string) => {

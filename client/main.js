@@ -59,4 +59,15 @@ program.command("update")
     const json = yield response.json();
     console.log(json);
 }));
+program.command("delete")
+    .description("delete an issue")
+    .argument("<id>", "issue id")
+    .action((id) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch(`http://localhost:8080/issues/${id}`, {
+        mode: "cors",
+        method: "DELETE"
+    });
+    const json = yield response.json();
+    console.log(json);
+}));
 program.parse();
