@@ -11,13 +11,43 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const { program } = require("commander");
 program.command("create")
     .description("create an issue")
-    .argument("<title>", "issue title")
+    .argument("[title]", "issue title")
     .argument("[description]", "issue description")
     .action((title, description) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(title, description);
     const response = yield fetch("http://localhost:8080/issues", {
         mode: "cors",
         method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title,
+            description
+        })
+    });
+    const json = yield response.json();
+    console.log(json);
+}));
+program.command("read")
+    .description("read an issue")
+    .argument("<id>", "issue id")
+    .action((id) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch(`http://localhost:8080/issues/${id}`, {
+        mode: "cors",
+        method: "GET"
+    });
+    const json = yield response.json();
+    console.log(json);
+}));
+program.command("update")
+    .description("update an issue")
+    .argument("<id>", "issue id")
+    .argument("[title]", "issue title")
+    .argument("[description]", "issue description")
+    .action((id, title, description) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch(`http://localhost:8080/issues/${id}`, {
+        mode: "cors",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
